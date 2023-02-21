@@ -13,6 +13,8 @@ Plan:
 
 Zastanowić się nad bibliotekami: TKinter czy PyQT? - tk inter bo prostszy, do tych zastosowan lepszy
 
+Napisz gównoskrypt w którym stworzysz obiekty z odpowiednimi wartościami dla klasy etykieta
+
 Nauczyć się obsługi Tk inter i zrobić Graficzny interfejs aplikacji.
 Nauczyć się programowania obiektowego i ogarnąć klasę etykieta.
 
