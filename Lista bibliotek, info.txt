@@ -11,6 +11,8 @@ PyDrive - biblioteka do obsługi dysku Google Drive w Pythonie. Umożliwia łatw
 
 Plan:
 
+Zastanowić się nad bibliotekami: TKinter czy PyQT? - tk inter bo prostszy, do tych zastosowan lepszy
+
 Nauczyć się obsługi Tk inter i zrobić Graficzny interfejs aplikacji.
 Nauczyć się programowania obiektowego i ogarnąć klasę etykieta.
 
@@ -20,6 +22,7 @@ Zastanowić się jak rozwiązać problem etykiet:
 Może zamiast zawierać wszystkie informacje w nazwie pliku, lepiej utworzyć w danym katalogu pli CFG, z wszystkim co potrzebne? Typu materiał itp? Niby spoko, ale jak rozwiązać problem tyłów?
 
 
+Jeżeli etykieta zostanie dodana do "koszyka", zmień jej nazwę w liście wyboru na zielony? 
 Nazwa pliku?
 
 MARKA_nazwa_waga_smak_wymiar_back
