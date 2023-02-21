@@ -1,0 +1,28 @@
+Cześć, mam pomysł na program w pythonie. Chciałbym opisać Ci mniej więcej zarys tej aplikacji, jak będzie ona wyglądać i jakie chciałbym żeby miała funkcjonalności, chciałbym żebyś nakierunkował mnie w miarę możliwości jak zacząć taką aplikację, jakich bibliotek użyć lub jakie rozwiązania poleciłbyś mi zastosować.
+A więc tak, program ma służyć i ułatwiać użytkownikowi wybieranie odpowiednich plików etykiet z dysku, sam proces wybierania tychże ma być banalnie prosty. Etykiety różnią się rozmiarem oraz materiałem na którym są nadrukowywane. Co więcej, niektóre etykiety są drukowane na worki, co skutkuje tym że drukujemy etykietę na przód worka oraz na tył worka, czasami jednak drukujemy oddzielnie etykietę na przód i tył worka, dlatego chciałbym żeby użytkownik przy wyborze danej etykiety mógł zaznaczyć czy chce drukować tył, czy nie. Dodatkowo, przy wyborze etykiet wpisujemy ilości, ile chcemy żeby zostało wydrukowane.
+
+
+Po wybraniu wszystkich etykiet, program wkłada je do "koszyka", tworzy listę wszystkich etykiet w excelu, a same pliki razem z plikiem excel pakuję do katalogu rar, wrzuca na serwer ftp, generuje wiadomość mail do skopiowania składającą się z predefiniowanego tekstu, linku ftp i tabelce przeklejnej z excela w której mamy właśnie nazwy etkiet, wymiary ilości oraz materiały na którym mają być etykiety drukowane.
+
+Jakie biblioteki polecałbyś użyć? Od czego zacząć? Pewnie przyda mi się bibliotega TKinter i xlsx writer?
+
+
+Jak rozwiązałbyś problem etykiet?
+Każda z nich może mieć inny wymiar, inny materiał na którym jest drukowana, etykieta może mieć sam przód lub być w zestawie z tyłem (w przypadku nadruków etkiet na worki) ?
+Tworzyłbyś obiekt słownika dla każdej etykiety? Czy może klasy będą lepszym rozwiązaniem?
+Czy programowanie obiektowe przyda mi się do tego projektu czy dam radę zrobić to bez niego? Przyznam, że nie programowałem jeszcze obiektowo, uważasz że będzie to niezbędne dla powodzenia tego projektu?
+Co z przechowywaniem etykiet? Lepiej przechowywać je na dysku lokalnie czy jednak w chmurze, tak żeby program działał na każdym komputerze i nie wymagał posiadania etykiet na dysku? Czy implementacja obsługi plików z chmurze jest ciężka? Jaką bibliotekę do wdrożenia obsługi plików z chmury byś polecał? 
+Czy przykładowo, dysk google byłby dobry do użycia w tym celu? (jako usługa chmury)?
+
+Odpowiedz proszę na wszytkie moje pytania, dzięki <3
+
+
+Dziękuje, jesteś super pomocny, ciesze się że istniejesz <3.
+
+Jeszcze jedno pytanie: opisałeś trzy biblioteki: google-auth, google-api-python-client, a także PyDrive.
+Powiesz coś więcej o nich? Różnią się diametralnie? Która będzie najprostsza w użyciu do mojego projektu?
+Czy jednak różnice są marginalne i w zasadzie nie ma to znaczenia?
+
+Czyli, jeżeli dobrze rozumiem, do użycia PyDdrive będę potrzebował loginu i hasła do konta na którym znajdują się etykiety na każdym komputerze z którego korzystam? Czy aplikacja będzie mogła korzystać z plików w trybie "gościa"? Nie chcę podawać loginu i hasła każdemu użytkownikowi aplikacji.
+
+

@@ -1,0 +1,30 @@
+Tkinter - popularna biblioteka do tworzenia interfejsów użytkownika w Pythonie.
+
+XlsxWriter - biblioteka do tworzenia plików Excel.
+
+PyRAR2 - biblioteka do tworzenia archiwów RAR.
+
+ftplib - biblioteka do obsługi protokołu FTP.
+
+PyDrive - biblioteka do obsługi dysku Google Drive w Pythonie. Umożliwia łatwe pobieranie i przesyłanie plików z dysku.
+
+
+Plan:
+
+Nauczyć się obsługi Tk inter i zrobić Graficzny interfejs aplikacji.
+Nauczyć się programowania obiektowego i ogarnąć klasę etykieta.
+
+
+Zastanowić się jak rozwiązać problem etykiet: 
+
+Może zamiast zawierać wszystkie informacje w nazwie pliku, lepiej utworzyć w danym katalogu pli CFG, z wszystkim co potrzebne? Typu materiał itp? Niby spoko, ale jak rozwiązać problem tyłów?
+
+
+Nazwa pliku?
+
+MARKA_nazwa_waga_smak_wymiar_back
+
+ALL_bcaamax_1000g_blackcurrant_156x214
+ALL_bcaamax_1000g_blackcurrant_back_156x90
+
+??
