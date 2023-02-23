@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import os
+import re
 
 
 class Etykieta:
@@ -27,6 +28,17 @@ class Etykieta:
         if "BFP-M" in self.filename:
             self.material = "Biała folia poliprenowa - MAT"
 
+    def return_product_name_for_listbox(self):
+
+        first_letter_capitalized = self.nazwa_produktu[:1].upper() + self.nazwa_produktu[1:]
+
+        final_product_name_of_label = re.sub('([A-Z]+)', r' \g<0>', first_letter_capitalized).strip().title()
+        return final_product_name_of_label
+
+    def __str__(self):
+        return f"{self.return_product_name_for_listbox()} {self.smak} {self.waga} "
+
+
 
 def list_files(directory):
     files = []
@@ -46,7 +58,7 @@ def update_listbox_by_brand_and_update_combo2():
     # Dodaj nowe elementy do listboxa, które odpowiadają wybranej marce w comboboxie
     for label_object in list_of_labels_objects:
         if label_object.marka == marka_z_comboboxa:
-            main_listbox.insert(tk.END, label_object.nazwa_waga_smak)
+            main_listbox.insert(tk.END, label_object)
 
     wybrana_marka_w_combo = combo_brand.get()
     dostepne_produkty = sorted(
@@ -64,7 +76,7 @@ def update_listbox_by_product_and_update_combo_3():
     # Dodaj nowe elementy do listboxa, które odpowiadają wybranej marce w comboboxie
     for label_object in list_of_labels_objects:
         if (label_object.marka == combo_brand.get()) and (label_object.nazwa_produktu == combo2_product.get()):
-            main_listbox.insert(tk.END, label_object.nazwa_waga_smak)
+            main_listbox.insert(tk.END, label_object)
 
     wybrany_produkt_w_combo2 = combo2_product.get()
     dostepne_wagi = sorted(
@@ -108,6 +120,8 @@ def delete_items_from_print_listbox():
     # Usuwanie zaznaczonych elementów w odwrotnej kolejności, odwrotna bo normalne usuwanie zmienia indeksy.
     for index in reversed(selection_indices):
         print_listbox.delete(index)
+
+
 
 
 # Sztywny katalog do testów
