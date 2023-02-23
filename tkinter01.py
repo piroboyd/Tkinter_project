@@ -22,6 +22,8 @@ class Etykieta:
             self.nazwa_waga_smak = f"{self.nazwa_produktu}_{self.waga}_{self.smak}_{self.wymiary_etykiety}_back"
         if "MP-M" in self.filename:
             self.material = "Metalizowany podkład, fioletowy pantone na biały kolor - MAT"
+        if "MP-B" in self.filename:
+            self.material = "Metalizowany podkład, fioletowy pantone na biały kolor - BŁYSK"
         if "BFP-M" in self.filename:
             self.material = "Biała folia poliprenowa - MAT"
 
