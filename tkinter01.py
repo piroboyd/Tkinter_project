@@ -279,6 +279,9 @@ def get_print_path():
                 print(f'Path is {obj.file_path}')
 
 
+# TODO: https://www.youtube.com/watch?v=n5gItcGgIkk&ab_channel=JobinPy
+# TODO: Dodać obsługę ilości dla każdej etykiety w treeview!
+
 path_test_button = tk.Button(window, text="check path of print file", command=get_print_path)
 path_test_button.grid(row=11, column=4)
 
