@@ -104,27 +104,34 @@ def update_listbox_by_weight():
             main_listbox.insert(tk.END, label_object)
 
 
-def move_items_to_print_listbox():
-    """Funkcja przenosząca zaznaczone elementy z Listboxa 1 do Listboxa 2."""
-    selection_indices = main_listbox.curselection()
+def move_items_to_print_treeview():
+    """Funkcja przenosząca zaznaczone elementy z Listboxa 1 do Treeview"""
+    selected_items = main_listbox.curselection()
 
     # Przechodzenie po zaznaczonych elementach w Listboxie 1
-    for index in selection_indices:
+    for index in selected_items:
         value = main_listbox.get(index)
-        # Sprawdzanie, czy wartość już istnieje w Listboxie 2
-        if value not in print_listbox.get(0, tk.END):
-            print_listbox.insert(tk.END, value)
+        # Sprawdzanie, czy wartość już istnieje w drzewie Treeview
+
+        # print(value)
+        already_exists = False
+
+        for item in print_treeview.get_children():
+            if print_treeview.item(item, "values")[0] == value:
+                already_exists = True
+                break
+
+        if not already_exists:
+            print_treeview.insert('', tk.END, values=(value, '0'))
 
 
-def delete_items_from_print_listbox():
-    # Funkcja usuwająca elementy z listboxa print_listbox
-
-    # Funkcja usuwająca elementy z listboxa print
-    selection_indices = print_listbox.curselection()
+def delete_items_from_print_treeview():
+    # Funkcja usuwająca elementy z print_treeview
+    selection_indices = print_treeview.selection()
 
     # Usuwanie zaznaczonych elementów w odwrotnej kolejności, odwrotna bo normalne usuwanie zmienia indeksy.
     for index in reversed(selection_indices):
-        print_listbox.delete(index)
+        print_treeview.delete(index)
 
 
 def filter_items_for_main_listbox(event):
@@ -134,6 +141,25 @@ def filter_items_for_main_listbox(event):
     main_listbox.delete(0, tk.END)
     for item in filtered_items:
         main_listbox.insert(tk.END, item)
+
+def on_double_click(event):
+    selected_item = main_listbox.curselection()
+
+    for index in selected_item:
+        value = main_listbox.get(index)
+        # Sprawdzanie, czy wartość już istnieje w drzewie Treeview
+
+        # print(value)
+        already_exists = False
+
+        for item in print_treeview.get_children():
+            if print_treeview.item(item, "values")[0] == value:
+                already_exists = True
+                break
+
+        if not already_exists:
+            print_treeview.insert('', tk.END, values=(value, '0'))
+            print(f"Dodano {main_listbox.get(selected_item)}")
 
 
 # Sztywny katalog do testów
@@ -172,21 +198,33 @@ main_listbox.grid(row=1, column=1, rowspan=10, sticky="NSEW")
 my_scrollbar.grid(row=1, column=2, rowspan=10, sticky="NS")
 main_listbox.config(yscrollcommand=my_scrollbar.set)
 window.grid_columnconfigure(1, weight=4)
+main_listbox.bind("<Double-Button-1>", on_double_click)
 
 for labels in list_of_labels_objects:
     main_listbox.insert(tk.END, labels)
 
-# Tworzenie print_listboxa po prawej stronie aplikacji, razem z scrollbarem.
-print_listbox = tk.Listbox(window, selectmode=tk.EXTENDED)
-print_scrollbar = tk.Scrollbar(window, orient=tk.VERTICAL)
-print_scrollbar.config(command=print_listbox.yview)
-print_listbox.grid(row=1, column=6, rowspan=10, sticky="NSEW")
-print_scrollbar.grid(row=1, column=7, rowspan=10, sticky="NS")
-print_listbox.config(yscrollcommand=print_scrollbar.set)
+# Tworzenie Treeview
+print_treeview = ttk.Treeview(window, selectmode=tk.EXTENDED)
+print_treeview_scrollbar = tk.Scrollbar(window, orient=tk.VERTICAL)
+print_treeview_scrollbar.config(command=print_treeview.yview)
+print_treeview.grid(row=1, column=6, rowspan=10, sticky="NSEW")
+print_treeview_scrollbar.grid(row=1, column=7, rowspan=10, sticky="NS")
+print_treeview.config(yscrollcommand=print_treeview_scrollbar.set)
 window.grid_columnconfigure(6, weight=4)
 
-# Tworzenie paska wyszukiwania pod lewym listboxem.
+print_treeview['columns'] = ("Nazwa pliku", "Ilość")
+print_treeview['show'] = 'headings' # usuń pierwszą kolumnę
 
+print_treeview.column("Nazwa pliku", anchor=tk.W)
+print_treeview.column("Ilość", anchor=tk.CENTER, width=10)
+
+# Create Headings
+
+print_treeview.heading("Nazwa pliku", text="Nazwa pliku", anchor=tk.W)
+print_treeview.heading("Ilość", text="Ilość", anchor=tk.CENTER)
+
+
+# Tworzenie paska wyszukiwania pod lewym listboxem.
 
 search_bar = tk.Entry(window)
 search_bar.grid(row=11, column=1)
@@ -220,27 +258,28 @@ combo3_weight.grid(row=6, column=4, padx=5)
 
 # Dodawanie buttonów do dodawania i usuwania etykiet.
 # Add
-add_to_print_button = tk.Button(window, text=">>>>>>", command=move_items_to_print_listbox)
+add_to_print_button = tk.Button(window, text=">>>>>>", command=move_items_to_print_treeview)
 add_to_print_button.grid(row=9, column=4)
 # Remove
-remove_from_print_button = tk.Button(window, text="<<<<<<", command=delete_items_from_print_listbox)
+remove_from_print_button = tk.Button(window, text="<<<<<<", command=delete_items_from_print_treeview)
 remove_from_print_button.grid(row=10, column=4)
 
 
-# Path test button, linking plain string from "print listbox" with corresponding label object.
+# Path test button, linking plain string from "print treeview" with corresponding label object.
 
 def get_print_path():
-    selected_items = print_listbox.curselection()
+    selected_items = print_treeview.selection()
 
-    for item_index in selected_items:
-        item = print_listbox.get(item_index)
+    for item in selected_items:
 
+        value = print_treeview.item(item, 'values')[0]
+        print(value)
         for obj in list_of_labels_objects:
-            if item == obj.__str__():
+            if value == obj.__str__():
                 print(f'Path is {obj.file_path}')
 
 
 path_test_button = tk.Button(window, text="check path of print file", command=get_print_path)
-path_test_button.grid(row=11, column=5)
+path_test_button.grid(row=11, column=4)
 
 window.mainloop()  # Place window on computer screen
