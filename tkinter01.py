@@ -142,6 +142,7 @@ def filter_items_for_main_listbox(event):
     for item in filtered_items:
         main_listbox.insert(tk.END, item)
 
+
 def on_double_click(event):
     selected_item = main_listbox.curselection()
 
@@ -160,6 +161,19 @@ def on_double_click(event):
         if not already_exists:
             print_treeview.insert('', tk.END, values=(value, '0'))
             print(f"Dodano {main_listbox.get(selected_item)}")
+
+
+# Path test button, linking plain string from "print treeview" with corresponding label object.
+def get_print_path():
+    selected_items = print_treeview.selection()
+
+    for item in selected_items:
+
+        value = print_treeview.item(item, 'values')[0]
+        print(value)
+        for obj in list_of_labels_objects:
+            if value == obj.__str__():
+                print(f'Path is {obj.file_path}')
 
 
 # Sztywny katalog do testów
@@ -264,23 +278,10 @@ add_to_print_button.grid(row=9, column=4)
 remove_from_print_button = tk.Button(window, text="<<<<<<", command=delete_items_from_print_treeview)
 remove_from_print_button.grid(row=10, column=4)
 
-
-# Path test button, linking plain string from "print treeview" with corresponding label object.
-
-def get_print_path():
-    selected_items = print_treeview.selection()
-
-    for item in selected_items:
-
-        value = print_treeview.item(item, 'values')[0]
-        print(value)
-        for obj in list_of_labels_objects:
-            if value == obj.__str__():
-                print(f'Path is {obj.file_path}')
-
-
-# TODO: https://www.youtube.com/watch?v=n5gItcGgIkk&ab_channel=JobinPy
 # TODO: Dodać obsługę ilości dla każdej etykiety w treeview!
+# TODO: Albo biblioteka "tkintertable" albo ten filmik:
+# TODO: https://www.youtube.com/watch?v=n5gItcGgIkk&ab_channel=JobinPy
+
 
 path_test_button = tk.Button(window, text="check path of print file", command=get_print_path)
 path_test_button.grid(row=11, column=4)
