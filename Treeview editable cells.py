@@ -28,7 +28,6 @@ class TreeviewEdit(ttk.Treeview):
         print(selected_values)
 
 
-
 if __name__ == "__main__":
 
     root = tk.Tk()
