@@ -9,7 +9,24 @@ class TreeviewEdit(ttk.Treeview):
         self.bind("<Double-1>", self.on_double_click)
 
     def on_double_click(self, event):
-        print("double clicked")
+
+        # Identify the region that was double-clicked
+        region_clicked = self.identify_region(event.x, event.y)
+
+        # If the clicked region is not a cell or tree, return None.
+        # We are only interested in cell and tree.
+        if region_clicked not in ("cell", "tree"):
+            return
+        # Which item was double clicked
+
+        column = self.identify_column(event.x)
+
+        selected_iid = self.focus()
+
+        selected_values = self.item(selected_iid)
+
+        print(selected_values)
+
 
 
 if __name__ == "__main__":
