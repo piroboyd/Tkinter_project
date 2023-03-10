@@ -18,7 +18,7 @@ class TreeviewEdit(ttk.Treeview):
         if region_clicked not in ("cell", "tree"):
             return
 
-        # Which item was double clicked
+        # Which item was double-clicked
         column = self.identify_column(event.x)
         column_index = int(column[1:]) - 1
 
@@ -86,7 +86,7 @@ if __name__ == "__main__":
     treeview_vehicles.heading("year", text="Year")
     treeview_vehicles.heading("colour", text="Colour")
 
-    sedan_row = treeview_vehicles.insert(parent="", index=tk.END, text="Sedan") # dodawanie parenta
+    sedan_row = treeview_vehicles.insert(parent="", index=tk.END, text="Sedan")  # add the parent
 
     treeview_vehicles.insert(parent=sedan_row, index=tk.END, values=("Nissan Versa", "2010", "Silver"))
     treeview_vehicles.insert(parent=sedan_row, index=tk.END, values=("Toyota Camry", "2012", "Blue"))
