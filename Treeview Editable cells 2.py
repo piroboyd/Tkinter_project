@@ -36,16 +36,27 @@ class PrintTreeview(ttk.Treeview):
 
         # Zidentyfikuj rząd na który klika user i zwróć wszystkie values dla rzędu, na który klika user.
         row_index = self.identify_row(event.y)
-        selected_values = self.item(row_index)
+        selected_row = self.item(row_index)
 
         # print(f"rząd: {row_index}")
         # print(f"kolumna: {column_index}")
         # print(f"wszystkie values dla rzędu: {selected_values}")
 
-        if column_index == 2:
-            selected_amount = selected_values.get("values")
+        selected_values = selected_row.get("values")
 
-            print(selected_amount[1])
+        print("wartosci dla calego rzedu:", selected_row)
+        print("indeks obecnej kolumny:", column_index)
+
+        # Wyświetl poprawną wartość. kolumna "etykiety" ma indeks 1, kolumna "ilość" ma indeks 2, ze wględu na to, że
+        # pierwsza kolumna, ta tworzona przez tkinter domyślnie która ma indeks zero jest schowana.
+        # wartości w selected_values ["Etykieta x", "Ilość"] mają indeksy 0 i 1, dlatego musimy przesunąć indeksy
+        # "kolumn" żeby wskazywały na odpowiednią wartość w komórce.
+        print(selected_values[column_index - 1])
+
+        # Wywietl wymiary i umiejscowienie danego rzędu, funkcja bbox przyjmuje indeks itemu lub rzędu
+        # (te w formacie I001)
+        selected_item_boundaries = self.bbox(row_index)
+        print("wymiary bbox:", selected_item_boundaries)
 
 
 if __name__ == "__main__":
