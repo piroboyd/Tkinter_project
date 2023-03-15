@@ -58,6 +58,8 @@ class PrintTreeview(ttk.Treeview):
         selected_item_boundaries = self.bbox(row_index)
         print("wymiary bbox:", selected_item_boundaries)
 
+        test = "elo"
+
 
 if __name__ == "__main__":
 
